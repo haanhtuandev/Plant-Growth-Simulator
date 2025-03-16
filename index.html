@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Growth Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <header>
+        <h1>Plant Growth Simulator</h1>
+        <p>An interactive web app where users adjust environmental factors to see cherry and apricot blossoms grow, bloom, or wither in real-time. 
+            Powered by <span>L-systems</span> and smart farming concepts, it showcases the impact of climate on plant health. 🚀</p>
+    </header>
+    
+    </p>
+    <main>
+        <section id="time-container">
+            <label for="day">Days remaining: 21</label>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+        </section>
+
+        <section id="visual-container">
+            <canvas id="treeCanvas" width="500" height="500"></canvas>
+        </section>
+        <section id="parameter-container">
+            <div id="controller-container">
+                <div id="slider-container">
+                    <label>Temperature</label>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <label>Moisture</label>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                </div>
+
+                <div id="selection-container">
+                    <label for="cars">Choose a tree:</label>
+                    <select name="trees" id="trees">
+                        <option value="cherry">Cherry Blossom</option>
+                        <option value="apricot">Apricot Blossom</option>
+                    </select>
+                </div>
+            </div>
+            <button id="simulate">Start simulation</button>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
