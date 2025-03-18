@@ -5,48 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Growth Simulator</title>
     <link rel="stylesheet" href="styles.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Plant Growth Simulator</h1>
-        <p>An interactive web app where users adjust environmental factors to see cherry and apricot blossoms grow, bloom, or wither in real-time. 
-            Powered by <span>L-systems</span> and smart farming concepts, it showcases the impact of climate on plant health. 🚀</p>
-    </header>
-    
-    </p>
-    <main>
-        <section id="time-container">
-            <label for="day">Days remaining: 21</label>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-        </section>
-
-        <section id="visual-container">
-            <canvas id="treeCanvas" width="500" height="500"></canvas>
-        </section>
+        <p>Shape the climate, watch the tree thrive or wither.</p>
+        <p>An interactive glimpse into nature’s delicate balance 🌿✨</p>
         <section id="parameter-container">
+            <h2>Control Panel</h2>
             <div id="controller-container">
                 <div id="slider-container">
-                    <label>Temperature</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <label>Moisture</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                </div>
+                    <label>Min Temperature (°C)</label>
+                    <input type="range" min="0" max="40" value="10" class="slider" id="min-temp">
 
-                <div id="selection-container">
-                    <label for="cars">Choose a tree:</label>
-                    <select name="trees" id="trees">
-                        <option value="cherry">Cherry Blossom</option>
-                        <option value="apricot">Apricot Blossom</option>
-                    </select>
+                    <label>Max Temperature (°C)</label>
+                    <input type="range" min="0" max="40" value="30" class="slider" id="max-temp">
+
+                    <label>Moisture (%)</label>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="moist">
                 </div>
             </div>
-            <button id="simulate">Start simulation</button>
+            <button id="simulate">Start Simulation</button>
+        </section>
+    </header>
+
+    <main>
+        <section id="visual-container">
+            <!-- Plant growth animation will be displayed here -->
         </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

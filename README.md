@@ -20,10 +20,10 @@ const ang = 25; //rotating angle
 
 let drawRules;
 let word = "X"; // Letter which is used to draw
-const maxGeneration = 7; //number of iteration
+const maxGeneration = 6; //number of iteration
 let currGeneration = 0;
 let growthPercent = 1;
-let started = false;
+
 let tempMax = 26; 
 let tempMin = 14;
 let moisture = 60;
@@ -39,28 +39,21 @@ let maturityDuration = 200; // How long the plant stays mature before dormancy (
 let maturityCounter = 0;    // Counter for tracking time spent in mature state
 
 function setup() {
-  canvas = createCanvas(458.4, 603.6); //background
-  canvas.parent("visual-container");
-  noLoop();
-  select("#simulate").mousePressed(() => {
-    if (!started) {
-      started = true;
-      loop(); // Start draw() loop when button is clicked
-    }
-  });
+  createCanvas(600, 600); //background
   strokeWeight(2); 
 
+  createP('Temperature Max (°C)');
+  createSlider(5, 50, 30).input(function() { tempMax = this.value(); }); //slider
 
-  select("#min-temp").input(() => {
-    temperature = int(select("#min-temp").value());
-  });
-  select("#max-temp").input(() => {
-    temperature = int(select("#max-temp").value());
-  });
+  createP('Temperature Min (°C)');
+  createSlider(0, 30, 15).input(function() {tempMin = this.value();});
 
-  select("#moist").input(() => {
-    moisture = int(select("#moist").value());
-  });
+  createP('Moisture (%)');
+  createSlider(0, 100, 60).input(function() { moisture = this.value(); }); //slider
+  
+  // Add button to manually restart growth cycle
+  let restartButton = createButton('Restart Growth');
+  restartButton.mousePressed(restartGrowth);
 
   drawRules = {
     "L": (t) => { //drawing leaves rules
@@ -227,6 +220,195 @@ function generate(word) {
       let rule = rules[c];
       if (Array.isArray(rule)) {
         next += chooseOne(rule); //choose one of the rule 
+      } else {
+        next += rules[c];
+      }
+    } else {
+      next += c;
+    }
+  }
+  return next;
+}
+
+function chooseOne(ruleSet) {
+  let n = random();
+  let t = 0;
+  for (let i = 0; i < ruleSet.length; i++) {
+    t += ruleSet[i].prob;
+    if (t > n) return ruleSet[i].rule;
+  }
+  return "";
+}
+
+function drawLsysLerp(x, y, state, t) {
+  t = constrain(t, 0, 1);
+  let lerpOn = false;
+  push();
+  translate(x, y);
+  for (let i = 0; i < state.length; i++) {
+    let c = state[i];
+    if (c === "(") {
+      lerpOn = true;
+      continue;
+    }
+    if (c === ")") {
+      lerpOn = false;
+      continue;
+    }
+    let lerpT = lerpOn ? t : 1;
+    if (c in drawRules) {
+      drawRules[c](lerpT);
+    }
+  }
+  pop();
+}
+
+-----------
+
+let canvas;
+let temperature = 18;
+let moisture = 60;
+const optimalTemp = { min: 15, max: 25 };
+const optimalMoist = { min: 50, max: 70 };
+const tBase = 5;
+let growthPercent = 1;
+let word = "X";
+const maxGeneration = 6;
+let currGeneration = 0;
+
+const rules = {
+  "X": [
+    { rule: "(F[+X][-X]FX)", prob: 0.3 },
+    { rule: "(F[+X][-X][+X][-X]FX)", prob: 0.2 },
+    { rule: "(F[+X]F[-X]FXL)", prob: 0.2 },
+    { rule: "(F[+X][-X]F[+X][-X]FXL)", prob: 0.15 },
+    { rule: "(F[[+X]L][-X]FXL)", prob: 0.15 }
+  ],
+  "F": [
+    { rule: "F(F)", prob: 0.7 },
+    { rule: "F(FF)", prob: 0.05 },
+    { rule: "F", prob: 0.25 }
+  ],
+  "(": "",
+  ")": ""
+};
+
+const len = 4;
+const ang = 25;
+let started = false;
+let drawRules;
+let simulateBtn = document.getElementById("simulate");
+
+function setup() {
+  canvas = createCanvas(400, 400);
+  canvas.parent("visual-container");
+  noLoop();
+  select("#simulate").mousePressed(() => {
+    if (!started) {
+      started = true;
+      loop(); // Start draw() loop when button is clicked
+    }
+  });
+
+  strokeWeight(2);
+  
+  select("#temp").input(() => {
+    temperature = int(select("#temp").value());
+  });
+
+  select("#moist").input(() => {
+    moisture = int(select("#moist").value());
+  });
+
+  drawRules = {
+    "L": (t) => {
+      noStroke();
+      let leafWidth, leafHeight;
+      if (temperature > optimalTemp.max) {
+        leafWidth = 0.5 * len * t;
+        leafHeight = 2.5 * len * t;
+      } else {
+        leafWidth = len * t;
+        leafHeight = 3 * len * t;
+      }
+
+      let leafColor;
+      if (moisture < optimalMoist.min && temperature < optimalTemp.min) {
+        leafColor = color(255, 178, 102);
+      } else if (moisture < optimalMoist.min && temperature > optimalTemp.max) {
+        leafColor = color(153, 76, 0);
+      } else if (moisture > optimalMoist.max && temperature < optimalTemp.min) {
+        leafColor = color(128, 128, 128);
+      } else if (moisture > optimalMoist.max && temperature > optimalTemp.min) {
+        leafColor = color(0, 102, 0);
+      } else if (moisture < optimalMoist.min) {
+        leafColor = color(204, 102, 0);
+      } else if (moisture > optimalMoist.max) {
+        leafColor = color(0, 102, 0);
+      } else if (temperature < optimalTemp.min) {
+        leafColor = color(153, 255, 153);
+      } else {
+        leafColor = color(0, 204, 0);
+      }
+
+      fill(leafColor);
+      ellipse(0, 0, leafWidth, leafHeight);
+    },
+    "F": (t) => {
+      stroke("#9ea93f");
+      line(0, 0, 0, -len * t);
+      translate(0, -len * t);
+    },
+    "+": (t) => {
+      rotate(PI / 180 * -ang * t);
+    },
+    "-": (t) => {
+      rotate(PI / 180 * ang * t);
+    },
+    "[": push,
+    "]": pop,
+  };
+}
+
+function draw() {
+  background(28);
+
+  let dailyGDD = max(0, temperature - tBase);
+  let growthRate = map(dailyGDD, 0, 40, 0.01, 0.1);
+
+  if (growthPercent < 1) {
+    const mod = (currGeneration + growthPercent);
+    growthPercent += growthRate / mod;
+  } 
+  else if (currGeneration === maxGeneration) {
+    noLoop();
+  }
+  else {
+    nextGeneration();
+  }
+
+  drawLsysLerp(width / 2, height, word, growthPercent);
+}
+
+function nextGeneration() {
+  if (growthPercent < 1) return;
+  if (currGeneration === maxGeneration) {
+    noLoop()
+    word = "X";
+  }
+  word = generate(word);
+  currGeneration++;
+  growthPercent = 0;
+}
+
+function generate(word) {
+  let next = "";
+  for (let i = 0; i < word.length; i++) {
+    let c = word[i];
+    if (c in rules) {
+      let rule = rules[c];
+      if (Array.isArray(rule)) {
+        next += chooseOne(rule);
       } else {
         next += rules[c];
       }

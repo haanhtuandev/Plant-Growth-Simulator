@@ -1,93 +1,178 @@
 /* General Styles */
 * {
     box-sizing: border-box;
-}
-body {
-    font-family: 'Inter', sans-serif;
-    text-align: center;
-    background: whitesmoke;
     margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(to bottom, #e0f2e9, #f8f8f8);
+    color: #2c3e50;
+    text-align: center;
+    gap: 50px;
+}
 
-}
+/* Header */
 header {
-    max-width: 35%;
+    margin: 5vw;
+    padding: 2rem;
 }
+
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    color: #1e5631;
+    margin-bottom: 1rem;
 }
+
 header p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #3a5a40;
 }
+
 span {
-    font-weight: bolder;
+    font-weight: bold;
+    color: #1e5631;
 }
+
+/* Main Section */
 main {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-    width: 500px; /* Set a fixed width */
+    align-items: center;
+    width: 500px;
     padding: 20px;
     background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-    gap: 20px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-right: 5vw;
 }
 
-#visual-container {
-    border: 1px solid black;
-    flex: 40%;
-    padding: 12px;
-}
-#time-container {
+/* Parameter Controls */
+#parameter-container {
+    margin-top: 2vw;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
-#time-container progress {
-    margin: auto;
+    background: #f0f7f4;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
     width: 100%;
 }
-#parameter-container {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
 
+#parameter-container h2 {
+    font-size: 1.5rem;
+    color: #1e5631;
+    margin-bottom: 1rem;
 }
-#controller-container {
-    margin: 2vw;
-    display: flex;
-}
-#parameter-container button {
-    display: inline-block;
-    margin: 1vw 2vw;
-    padding: 1vw;
-}
+
+/* Sliders */
 #slider-container {
     text-align: left;
-}
-.slider {
-    accent-color: grey;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 2vw 0px;
 }
 
-.progress-container {
+.range-slider {
+    position: relative;
     width: 100%;
-    height: 20px;
-    background-color: #ddd;
-    /* border-radius: 10px; */
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.progress-bar {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #ff7eb3, #ff758c);
-    transition: width 0.5s ease-in-out;
-    /* s */
+.range-slider input {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    appearance: none;
+    background: none;
+}
+
+.range-slider input::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #3a5a40;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Moisture Slider */
+.slider {
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #dde7d5;
+    border-radius: 4px;
+    outline: none;
+    transition: background 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #1e5631;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider:hover {
+    background: #b7d4bb;
+}
+
+/* Display Values */
+.values, #moist-value {
+    font-size: 1.1rem;
+    color: #3a5a40;
+}
+
+/* Button */
+#simulate {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background: #1e5631;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+#simulate:hover {
+    background: #3a5a40;
+}
+@media only screen and (max-width: 600px) {
+    body {
+      flex-direction: column;
+
+    }
+  }
+
+
+  #visual-container {
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid none; /* Earthy wooden-like border */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Optional: Add subtle inner glow effect */
+#visual-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%); */
+    z-index: 1;
 }
