@@ -31,8 +31,7 @@ The simulator features a clean, aesthetic interface with:
 To run the project locally:
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/virtual-greenhouse-simulator.git
-   cd virtual-greenhouse-simulator
+   git clone https://github.com/haanhtuandev/Plant-Growth-Simulator.git
    ```
 2. Open `index.html` in a browser.
 3. Ensure internet access for loading external libraries (p5.js).
@@ -50,8 +49,12 @@ This project aims to:
 - Explore the **potential for IoT-based smart farming applications**.
 
 ## 🤝 Contributors
-- **[Your Name]** (Lead Developer, UI/UX)
-- **Team Members** (If applicable)
+- **Ha Anh Tuan**
+- **Tran Dinh Tuong**
+- **Huynh Pham Duc Tri**
+- **Giang Vy Hao**
+
+
 
 ## 📜 License
 This project is licensed under the **MIT License**.
