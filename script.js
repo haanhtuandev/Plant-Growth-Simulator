@@ -39,7 +39,7 @@ let maturityDuration = 200; // How long the plant stays mature before dormancy (
 let maturityCounter = 0;    // Counter for tracking time spent in mature state
 
 function setup() {
-  canvas = createCanvas(458.4, 603.6); //background
+  canvas = createCanvas(600, 700); //background
   canvas.parent("visual-container");
   noLoop();
   select("#simulate").mousePressed(() => {
@@ -52,10 +52,10 @@ function setup() {
 
 
   select("#min-temp").input(() => {
-    temperature = int(select("#min-temp").value());
+    tempMin = int(select("#min-temp").value());
   });
   select("#max-temp").input(() => {
-    temperature = int(select("#max-temp").value());
+    tempMax = int(select("#max-temp").value());
   });
 
   select("#moist").input(() => {

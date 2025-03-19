@@ -24,13 +24,13 @@ header {
 }
 
 header h1 {
-    font-size: 2.2rem;
+    font-size: 3rem;
     color: #1e5631;
     margin-bottom: 1rem;
 }
 
 header p {
-    font-size: 1.2rem;
+    font-size: 2rem;
     line-height: 1.6;
     color: #3a5a40;
 }
@@ -45,12 +45,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 500px;
+    width: 600px;
     padding: 20px;
-    background: white;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     margin-right: 5vw;
+    transform: translateX(20px); /* Moves it slightly to the right */
+    transform: translateY(20px); /* Moves it slightly to the right */
 }
 
 /* Parameter Controls */
@@ -78,9 +79,11 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 2vw 0px;
+    margin: 2vw;
 }
-
+#slider-container label {
+    font-size: larger;
+}
 .range-slider {
     position: relative;
     width: 100%;
@@ -168,11 +171,12 @@ main {
     position: relative;
 }
 
-/* Optional: Add subtle inner glow effect */
+
 #visual-container::before {
     content: "";
     position: absolute;
     inset: 0;
-    /* background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%); */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 70%);
     z-index: 1;
 }
+
