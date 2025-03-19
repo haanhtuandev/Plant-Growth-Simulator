@@ -20,7 +20,7 @@ const ang = 25; //rotating angle
 
 let drawRules;
 let word = "X"; // Letter which is used to draw
-const maxGeneration = 7; //number of iteration
+const maxGeneration = 8; //number of iteration
 let currGeneration = 0;
 let growthPercent = 1;
 let started = false;
@@ -39,7 +39,7 @@ let maturityDuration = 200; // How long the plant stays mature before dormancy (
 let maturityCounter = 0;    // Counter for tracking time spent in mature state
 
 function setup() {
-  canvas = createCanvas(600, 700); //background
+  canvas = createCanvas(750, 1000); //background
   canvas.parent("visual-container");
   noLoop();
   select("#simulate").mousePressed(() => {
