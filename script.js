@@ -39,7 +39,7 @@ let maturityDuration = 200; // How long the plant stays mature before dormancy (
 let maturityCounter = 0;    // Counter for tracking time spent in mature state
 
 function setup() {
-  canvas = createCanvas(750, 1000); //background
+  canvas = createCanvas(windowWidth*0.5, windowHeight*0.9); //background
   canvas.parent("visual-container");
   noLoop();
   select("#simulate").mousePressed(() => {
@@ -97,7 +97,8 @@ function setup() {
         else if(temperature < optimalTemp.min){
           leafColor = color(153, 255, 153)
         } //pale green
-        else {leafColor = color(0, 204, 0)} //green
+        // else {leafColor = color(0, 204, 0)}
+        else {leafColor = color(255, 204, 204)} //green
       }
 
       fill(leafColor);
@@ -157,7 +158,7 @@ function draw() {
     // Visual indicator that plant is mature
     if (frameCount % 60 < 30) {  // Blink effect
       fill(0, 255, 0);  // Green text
-      text("🌱 Plant Mature! 🌱", width/2 - 80, 100);
+      text("🌱 Plant Mature! 🌱", 0, 100);
     }
     
     // After maturity period, transition to dormant
@@ -169,7 +170,7 @@ function draw() {
   else if (plantState === "dormant") {
     // Plant is dormant, waiting for restart
     fill(255);
-    text("Click to plant new seed", width/2 - 80, 100);
+    text(" Click to plant new seed", 0, 100);
     
     // Check for mouse click to restart
     if (mouseIsPressed) {
