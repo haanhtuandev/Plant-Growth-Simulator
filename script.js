@@ -20,7 +20,8 @@ const ang = 25; //rotating angle
 
 let drawRules;
 let word = "X"; // Letter which is used to draw
-const maxGeneration = 8; //number of iteration
+let maxGeneration = window.innerWidth <= 800 ? 6 : 8; // Default: 10, Mobile: 7
+
 let currGeneration = 0;
 let growthPercent = 1;
 let started = false;
