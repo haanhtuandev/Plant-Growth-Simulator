@@ -78,28 +78,27 @@ function setup() {
 
       let leafColor;
       if (moisture < optimalMoist.min && temperature < optimalTemp.min) {
-        leafColor = color(255, 178, 102); // Pale brown
+        leafColor = color(255, 204, 204); // Very pale pink (almost white)
       } else 
         if (moisture < optimalMoist.min && temperature > optimalTemp.max) {
-        leafColor = color(153, 76, 0);   // Dark brown
+        leafColor = color(204, 102, 102); // Brownish pink
       } else {
         if (moisture > optimalMoist.max && temperature < optimalTemp.min) {
-          leafColor = color(128, 128, 128); // Pale dark 
+          leafColor = color(255, 229, 229); // Faded pale pink
         } else 
         if (moisture > optimalMoist.max && temperature > optimalTemp.min){
-          leafColor = color(0, 102, 0);     // Dark green
+          leafColor = color(255, 204, 229); // Light, washed-out pink 
         }else 
         if (moisture < optimalMoist.min){
-          leafColor = color(204, 102, 0) //brown
+          leafColor = color(230, 115, 115); // Dull pinkish brown
         }
         else if(moisture > optimalMoist.max){
-          leafColor = color(0, 102, 0) //dark green
+          leafColor = color(255, 229, 240); // Very pale pink, near white 
         }
         else if(temperature < optimalTemp.min){
-          leafColor = color(153, 255, 153)
-        } //pale green
-        // else {leafColor = color(0, 204, 0)}
-        else {leafColor = color(255, 204, 204)} //green
+          leafColor = color(255, 204, 204); // Soft pale pink
+        } 
+        else {leafColor = color(255, 153, 153)}; // Default light pink
       }
 
       fill(leafColor);
