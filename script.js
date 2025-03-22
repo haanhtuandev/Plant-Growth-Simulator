@@ -39,7 +39,8 @@ let maturityDuration = 200; // How long the plant stays mature before dormancy (
 let maturityCounter = 0;    // Counter for tracking time spent in mature state
 
 function setup() {
-  canvas = createCanvas(windowWidth*0.5, windowHeight*0.9); //background
+  adjustCanvasSize(); // Call function to set the initial size
+  canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.parent("visual-container");
   noLoop();
   select("#simulate").mousePressed(() => {
@@ -269,4 +270,19 @@ function drawLsysLerp(x, y, state, t) {
     }
   }
   pop();
+}
+// Responsiveness
+
+function windowResized() {
+  adjustCanvasSize(); // Recalculate canvas size on resize
+  resizeCanvas(canvasWidth, canvasHeight);
+}
+
+function adjustCanvasSize() {
+  let aspectRatio = 0.5; // Adjust as needed
+  let minWidth = 450; // Set a minimum width for the canvas
+  let maxWidth = 800; // Set a maximum width for larger screens
+
+  canvasWidth = constrain(windowWidth * aspectRatio, minWidth, maxWidth);
+  canvasHeight = windowHeight * 0.9;
 }
