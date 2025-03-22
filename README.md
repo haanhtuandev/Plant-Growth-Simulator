@@ -5,7 +5,7 @@ The **Virtual Greenhouse Simulator** is an interactive web application that demo
 
 ## 🚀 Features
 - **Dynamic Plant Growth Animation**: Visual representation of tree growth based on user-set conditions.
-- **Adjustable Environmental Factors**: Temperature, moisture, and pH levels impact plant health.
+- **Adjustable Environmental Factors**: Temperature, moisture impact plant health.
 - **Realistic Growth Simulation**: Trees bloom, thrive, or wither depending on optimal or poor conditions.
 - **Smooth UI & Responsive Design**: Aesthetic and mobile-friendly interface.
 - **No Registration Required**: Open for anyone to experiment with plant growth dynamics.
