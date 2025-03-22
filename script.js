@@ -280,7 +280,7 @@ function windowResized() {
 
 function adjustCanvasSize() {
   let aspectRatio = 0.5; // Adjust as needed
-  let minWidth = 450; // Set a minimum width for the canvas
+  let minWidth = 350; // Set a minimum width for the canvas
   let maxWidth = 800; // Set a maximum width for larger screens
 
   canvasWidth = constrain(windowWidth * aspectRatio, minWidth, maxWidth);
