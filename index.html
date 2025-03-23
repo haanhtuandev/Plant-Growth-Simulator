@@ -17,17 +17,20 @@
             <h2>Control Panel</h2>
             <div id="controller-container">
                 <div id="slider-container">
-                    <label>Min Temperature (°C)</label>
+                    <label>Min Temperature (°C)<span id="min-temp-value">10</span></label>
+                     <!-- Value Display -->
                     <input type="range" min="0" max="20" value="10" class="slider" id="min-temp">
-                    <span id="min-temp-value">10</span> <!-- Value Display -->
-                
-                    <label>Max Temperature (°C)</label>
+                    
+                    
+                    <label>Max Temperature (°C) <span id="max-temp-value">30</span></label>
+                     <!-- Value Display -->
                     <input type="range" min="20" max="40" value="30" class="slider" id="max-temp">
-                    <span id="max-temp-value">30</span> <!-- Value Display -->
-                
-                    <label>Moisture (%)</label>
+                    
+                    
+                    <label>Moisture (%) <span id="moist-value">50</span></label>
+                     <!-- Value Display -->
                     <input type="range" min="0" max="100" value="50" class="slider" id="moist">
-                    <span id="moist-value">50</span> <!-- Value Display -->
+                    
                 </div>
                 
             </div>
