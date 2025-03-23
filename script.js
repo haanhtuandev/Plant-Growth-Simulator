@@ -21,7 +21,6 @@ const ang = 25; //rotating angle
 let drawRules;
 let word = "X"; // Letter which is used to draw
 let maxGeneration = window.innerWidth <= 800 ? 7 : 8; // Default: 10, Mobile: 7
-
 let currGeneration = 0;
 let growthPercent = 1;
 let started = false;
@@ -286,3 +285,28 @@ function adjustCanvasSize() {
   canvasWidth = constrain(windowWidth * aspectRatio, minWidth, maxWidth);
   canvasHeight = windowHeight * 0.9;
 }
+// Function to update slider value display
+function updateSliderValue(sliderId, valueId) {
+  const slider = document.getElementById(sliderId);
+  const valueDisplay = document.getElementById(valueId);
+
+  if (sliderId !== "moist"){
+    valueDisplay.textContent = slider.value + "°C"; // Set initial value
+
+    slider.addEventListener("input", () => {
+      valueDisplay.textContent = slider.value + "°C"; // Update on change
+  });
+  }
+  else {
+    valueDisplay.textContent = slider.value + "%"; // Set initial value
+
+    slider.addEventListener("input", () => {
+    valueDisplay.textContent = slider.value + "%"; // Update on change
+  })}
+  
+} 
+
+// Apply to each slider
+updateSliderValue("min-temp", "min-temp-value");
+updateSliderValue("max-temp", "max-temp-value");
+updateSliderValue("moist", "moist-value");
