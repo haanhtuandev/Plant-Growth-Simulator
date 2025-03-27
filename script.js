@@ -125,14 +125,32 @@ function draw() {
   let temperature = (tempMax + tempMin)/2; //average temperature of a day
 
   // Display current plant state and info
-  textSize(16);
+  textSize(24);
   fill(255);
   
   let remainingGDD = Math.max(0, totalGDDRequired - accumulatedGDD);
-  text(`Remaining GDD: ${Math.floor(remainingGDD)}`, 10, 20);
-  text(`Plant State: ${plantState}`, 10, 40);
-  text(`Temperature: ${temperature.toFixed(1)}°C`, 10, 60);
-  text(`Moisture: ${moisture}%`, 10, 80);
+  let texts = [
+    `Plant State: ${plantState}`,
+    `Temperature: ${temperature.toFixed(1)}°C`,
+    `Moisture: ${moisture}%`,
+    `GDD: ${Math.floor(remainingGDD)}`,
+  ];
+  
+  let startY = 20;
+  let lineSpacing = 30; // Adjust this value for more spacing
+  
+  // Set default font size for regular text
+  textSize(24);
+  for (let i = 0; i < texts.length - 1; i++) {
+    text(texts[i], 10, startY + i * lineSpacing);
+  }
+  
+  // Set larger font size for GDD and position it dynamically
+  textSize(48); // Adjust as needed
+  text(texts[3], 10, height - 10);
+  
+
+
   
   if (plantState === "growing") {
     // Calculate required GDD per generation
@@ -158,7 +176,7 @@ function draw() {
     // Visual indicator that plant is mature
     if (frameCount % 60 < 30) {  // Blink effect
       fill(0, 255, 0);  // Green text
-      text("🌱 Plant Mature! 🌱", 0, 100);
+      text("🌱 Plant Mature! 🌱", 0, 150);
     }
     
     // After maturity period, transition to dormant
@@ -170,7 +188,7 @@ function draw() {
   else if (plantState === "dormant") {
     // Plant is dormant, waiting for restart
     fill(255);
-    text(" Click to plant new seed", 0, 100);
+    text(" Click to plant new seed", 0, 150);
     
     // Check for mouse click to restart
     if (mouseIsPressed) {
